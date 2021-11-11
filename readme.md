@@ -1,4 +1,4 @@
-# READ ME
+# README
 
 There are source codes which written by Google Apps Script.
 Please read how to use them and run them to use effectively!
