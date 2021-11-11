@@ -14,7 +14,7 @@ function test() {
   sendToSlack("テスト通知確認です", "#100マス計算バトル");
 }
 
-function onFormSubmit(e){
+function formSubmit(e){
   var body = "100マス計算の結果が報告されました\n"; 
   var applicant = "";
   var itemResponse = e.response.getItemResponses();
@@ -22,24 +22,23 @@ function onFormSubmit(e){
   for (var i = 0; i < itemResponse.length; i++){
     var formData = itemResponse[i];
     var title = formData.getItem().getTitle();
-    // var response = formData.getResponse();​
-    
-    switch (title) {
+    var answer = formData.getResponse();
+     switch (title) {
       case "名前":
-        candidate = response;
+        candidate = answer;
         break;
       case "実施した項目":
-        menu = response;
+        menu = answer;
         break;
       case "時間（秒）":
-        time = response;
+        time = answer;
         break;
       default:
         break;
     }
   }
-  var bodyPublic =  body + "*名前* \n" + candidate 
-  + "\n *実施した項目* \n" + menu
-  + "\n *時間（秒）* \n" + time
+  var bodyPublic =  body + "\n *名前* \n" + candidate 
+  + "\n\n *実施した項目* \n" + menu
+  + "\n\n *時間（秒）* \n" + time
   sendToSlack(bodyPublic, "#100マス計算バトル");
 }
